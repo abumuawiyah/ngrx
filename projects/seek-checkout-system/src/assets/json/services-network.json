@@ -1,0 +1,16 @@
+[
+    {
+        "product": "Backup1",
+        "desc": "Lorem ipsum",
+        "portfolio": "BT Connect",
+        "service": "Ethernet Connect",
+        "type": "Network"
+    },
+    {
+        "product": "Backup2",
+        "desc": "Lorem ipsum",
+        "portfolio": "BT Connect",
+        "service": "Ethernet Connect",
+        "type": "Network"
+    }
+]

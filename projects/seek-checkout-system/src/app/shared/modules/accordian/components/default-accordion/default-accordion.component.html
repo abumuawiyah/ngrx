@@ -1,0 +1,9 @@
+<ngb-accordion *ngFor="let item of metadata.items">
+  <ngb-panel title="{{item.label}}">
+    <ng-template ngbPanelContent>
+        <ng-container *ngTemplateOutlet="item.content; context: {value:item}" >
+
+        </ng-container>
+    </ng-template>
+  </ngb-panel>
+</ngb-accordion>

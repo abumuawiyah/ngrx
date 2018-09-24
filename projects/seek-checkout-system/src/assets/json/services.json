@@ -1,0 +1,44 @@
+[
+    {
+        "product": "EFM",
+        "desc": "Lorem ipsum",
+        "portfolio": "BT Connect",
+        "service": "IP Connect",
+        "type": "CPE"
+    },
+    {
+        "product": "ADSL Premium",
+        "desc": "Lorem ipsum",
+        "portfolio": "BT Connect",
+        "service": "IP Connect",
+        "type": "CPE"
+    },
+    {
+        "product": "Backup1",
+        "desc": "Lorem ipsum",
+        "portfolio": "BT Connect",
+        "service": "Ethernet Connect",
+        "type": "Network"
+    },
+    {
+        "product": "Backup2",
+        "desc": "Lorem ipsum",
+        "portfolio": "BT Connect",
+        "service": "Ethernet Connect",
+        "type": "Network"
+    },
+    {
+        "product": "Vault1",
+        "desc": "Lorem ipsum",
+        "portfolio": "BT Connect",
+        "service": "Cloud Connect",
+        "type": "VAS"
+    },
+    {
+        "product": "Vault2",
+        "desc": "Lorem ipsum",
+        "portfolio": "BT Connect",
+        "service": "Cloud Connect",
+        "type": "VAS"
+    }
+]

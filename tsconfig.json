@@ -1,0 +1,40 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es5",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2017",
+      "dom"
+    ],
+    "paths": {
+      "@ngrx/effects": [
+        "node_modules/@ngrx/effects"
+      ],
+      "@ngrx/store": [
+        "node_modules/@ngrx/store"
+      ],
+      "@ngrx/store-devtools": [
+        "node_modules/@ngrx/store-devtools"
+      ],
+      "@ngrx/router-store": [
+        "node_modules/@ngrx/router-store"
+      ],
+      "@ngrx/entity": [
+        "node_modules/@ngrx/entity"
+      ],
+      "job-ads-api": [
+        "dist/job-ads-api"
+      ]
+    }
+  }
+}

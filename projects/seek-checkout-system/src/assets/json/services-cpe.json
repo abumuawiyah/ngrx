@@ -1,0 +1,16 @@
+[
+    {
+        "product": "EFM",
+        "desc": "Lorem ipsum",
+        "portfolio": "BT Connect",
+        "service": "IP Connect",
+        "type": "CPE"
+    },
+    {
+        "product": "ADSL Premium",
+        "desc": "Lorem ipsum",
+        "portfolio": "BT Connect",
+        "service": "IP Connect",
+        "type": "CPE"
+    }
+]

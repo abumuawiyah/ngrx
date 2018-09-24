@@ -1,0 +1,16 @@
+[
+    {
+        "product": "Vault1",
+        "desc": "Lorem ipsum",
+        "portfolio": "BT Connect",
+        "service": "Cloud Connect",
+        "type": "VAS"
+    },
+    {
+        "product": "Vault2",
+        "desc": "Lorem ipsum",
+        "portfolio": "BT Connect",
+        "service": "Cloud Connect",
+        "type": "VAS"
+    }
+]

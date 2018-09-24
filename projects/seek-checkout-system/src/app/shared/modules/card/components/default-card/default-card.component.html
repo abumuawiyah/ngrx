@@ -1,0 +1,11 @@
+<div class="card">
+    <div class="card-body">
+      <h5 class="card-title">{{metadata.label}}</h5>
+      <div class="card-text">
+          <ng-container *ngTemplateOutlet="metadata.content; context: {value:metadata}" >
+test
+            </ng-container>
+          </div>
+      <a *ngIf="metadata.showButton" href="#" (click)="onButtonClick($event)" class="btn btn-primary">Save</a>
+    </div>
+  </div>
