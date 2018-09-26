@@ -1,11 +1,10 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-// import { NgbCarouselModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { StoreModule } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
 
-import { DashboardEffects } from "./effects/job-ads.effects";
+import { JobAdsEffects } from "./effects/job-ads.effects";
 import { reducers } from "./reducers";
 
 import { DashboardRoutingModule } from "./job-ads-routing.module";
@@ -15,21 +14,21 @@ import { RouterModule } from "@angular/router";
 
 import { ReactiveFormsModule } from "@angular/forms";
 import { JobAdsApiModule } from "job-ads-api";
-import { AccordianModule, CardModule } from "../../shared";
+import { SeekContainerModule } from "../../shared/modules/seek-container/seek-container.module";
+import { SeekUlComponent } from "../../shared/modules/seek-ul/seek-ul.component";
 
 @NgModule({
     imports: [
         CommonModule,
         DashboardRoutingModule,
-        StoreModule.forFeature("dashboard", reducers),
-        EffectsModule.forFeature([DashboardEffects]),
+        StoreModule.forFeature("jobAds", reducers),
+        EffectsModule.forFeature([JobAdsEffects]),
         JobAdsApiModule,
         ReactiveFormsModule,
-        AccordianModule,
-        CardModule
+        SeekContainerModule
     ],
     declarations: [JobAdsComponent],
     exports: [JobAdsComponent],
-    entryComponents: []
+    entryComponents: [SeekUlComponent]
 })
 export class JobAdsModule {}

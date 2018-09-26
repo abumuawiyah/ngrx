@@ -1,6 +1,13 @@
 import { Injectable, Inject } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
+
+const httpOptions = {
+    headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        Authorization: "my-auth-token"
+    })
+};
 
 @Injectable({
     providedIn: "root"
@@ -18,5 +25,10 @@ export class JobAdsApiService {
     getPackages(reqData: any): Observable<any> {
         const url = `${this.apiRoot}/getPackages`;
         return this.http.get<any>(url);
+    }
+
+    checkout(reqData: any): Observable<any> {
+        const url = `${this.apiRoot}/checkout`;
+        return this.http.post<any>(url, reqData, httpOptions);
     }
 }

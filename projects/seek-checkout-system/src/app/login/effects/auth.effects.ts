@@ -32,7 +32,7 @@ export class AuthEffects {
     @Effect({ dispatch: false })
     loginSuccess$ = this.actions$
         .ofType(AuthActionTypes.LoginSuccess)
-        .do(() => this.router.navigate(["/dashboard"]));
+        .do(() => this.router.navigate(["/jobads"]));
 
     @Effect({ dispatch: false })
     loginFailure$ = this.actions$

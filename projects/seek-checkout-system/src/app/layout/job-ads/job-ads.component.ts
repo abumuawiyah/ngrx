@@ -7,13 +7,13 @@ import {
 } from "@angular/core";
 import { routerTransition } from "../../router.animations";
 import { select, Store } from "@ngrx/store";
-import {} from "./models/job-ads.model";
-import * as fromDashboard from "./reducers";
-import * as Dashboard from "./actions/job-ads.action";
+import * as fromJobAds from "./reducers";
+import * as JobAds from "./actions/job-ads.action";
 import { Router } from "@angular/router";
 import { Observable } from "rxjs/Observable";
 import { JobAdsApiService } from "job-ads-api";
 import { Metadata } from "../../shared/model/metadata";
+import { SeekUlComponent } from "../../shared/modules/seek-ul/seek-ul.component";
 
 @Component({
     selector: "app-job-ads",
@@ -23,55 +23,61 @@ import { Metadata } from "../../shared/model/metadata";
     providers: [JobAdsApiService]
 })
 export class JobAdsComponent implements OnInit, OnDestroy {
-    // data
-    getDashboardState$ = this.store.select(fromDashboard.getDashboardState);
-    sharedData$: Observable<string>;
-
-    @ViewChild("ads")
-    adsTmpl: TemplateRef<any>;
-    @ViewChild("package")
-    defaultPackageTmpl: TemplateRef<any>;
-    @ViewChild("classicPackage")
-    classicPackageTmpl: TemplateRef<any>;
-
-    accordianMetadata: Metadata = {};
-    cards: Array<Metadata> = [];
+    getJobAdsState$ = this.store.select(fromJobAds.getJobAdsState);
+    adsState$: Observable<any>;
+    selectedPackagesState$: Observable<any>;
+    containerMetadata: Metadata = {};
+    checkoutItems: Array<any> = [];
 
     constructor(
-        private store: Store<fromDashboard.State>,
+        private store: Store<fromJobAds.State>,
         public router: Router,
         public jobAdsServ: JobAdsApiService
     ) {
-        this.sharedData$ = this.store.pipe(select(fromDashboard.getSharedData));
+        this.adsState$ = this.store.pipe(select(fromJobAds.getAds));
+        this.selectedPackagesState$ = this.store.pipe(
+            select(fromJobAds.getSelectedPackages)
+        );
+        this.containerMetadata = {
+            texts: {
+                header: "label",
+                body: "Please select below package",
+                footer: "dateCreated"
+            },
+            components: {
+                body: SeekUlComponent
+            },
+            dataAccess: {
+                body: "packages"
+            },
+            actionReference: {
+                body: "radioClicked"
+            },
+            actions: {
+                radioClicked: e => {
+                    this.store.dispatch(
+                        new JobAds.PackageSelected({
+                            ad: e.metadata.uniqId,
+                            package: e.data.id
+                        })
+                    );
+                }
+            }
+        };
+
+        this.selectedPackagesState$.subscribe(
+            state => (this.checkoutItems = state.selections)
+        );
     }
 
     ngOnInit() {
-        this.jobAdsServ.getAds({}).subscribe(response => {
-            this.accordianMetadata = {
-                items: response.data.map(data => {
-                    return Object.assign(data, { content: this.adsTmpl });
-                })
-            };
-        });
-
-        this.jobAdsServ.getPackages({}).subscribe(response => {
-            this.cards = response.data.map(data => {
-                const tmpl = data.template;
-                return Object.assign(data, {
-                    content: this[`${tmpl}PackageTmpl`],
-                    showButton: tmpl === "default" ? true : false
-                });
-            });
-        });
-
-        this.sharedData$.subscribe(data => {
-            console.log("getDashboardState", data);
-        });
+        this.store.dispatch(new JobAds.LoadAds({}));
     }
 
-    onSavePackage(e) {
+    onCheckoutClick(e) {
         e.preventDefault();
-        alert(1234);
+        console.log("onCheckoutClick", this.checkoutItems);
+        this.store.dispatch(new JobAds.Checkout(this.checkoutItems));
     }
 
     ngOnDestroy(): void {}

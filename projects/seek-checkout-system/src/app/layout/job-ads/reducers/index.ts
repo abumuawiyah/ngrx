@@ -1,23 +1,27 @@
 import { createSelector, createFeatureSelector } from "@ngrx/store";
 import * as fromRoot from "../../../reducers";
-import * as fromDashboard from "./job-ads.reducer";
+import * as fromJobAds from "./job-ads.reducer";
 
-export interface DashboardState {
-    dashboardState: fromDashboard.State;
+export interface JobAdsState {
+    ads: fromJobAds.State;
+    selections: fromJobAds.State;
 }
 
 export interface State extends fromRoot.State {
-    dashboardState: DashboardState;
+    jobAds: JobAdsState;
 }
 
 export const reducers = {
-    dashboardState: fromDashboard.reducer
+    ads: fromJobAds.reducer,
+    selections: fromJobAds.reducer
 };
 
-export const getDashboardState = createFeatureSelector<DashboardState>(
-    "dashboard"
-);
+export const getJobAdsState = createFeatureSelector<JobAdsState>("jobAds");
 
-export const getSharedData = createSelector(getDashboardState, state => {
-    return state.dashboardState.dataShared.data;
+export const getAds = createSelector(getJobAdsState, state => {
+    return state.ads;
+});
+
+export const getSelectedPackages = createSelector(getJobAdsState, state => {
+    return state.selections;
 });

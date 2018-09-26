@@ -1,0 +1,16 @@
+<div [@routerTransition]>
+
+    <h2 class="text-muted">Checkout <small>please verify your items</small></h2>
+    <div class="row">
+      <div class="col" *ngFor="let package of (selectedPackagesState$ | async)">
+        {{package}}
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col">
+        <button (click)="onPayClick($event)" type="button" class="btn btn-danger">Pay</button>
+      </div>        
+    </div>
+    
+</div>

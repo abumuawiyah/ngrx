@@ -1,0 +1,13 @@
+
+<div class="card">
+    <div class="card-header">
+        {{header.text}}
+    </div>
+    <div class="card-body">
+        <p class="card-text">{{metadata.texts.body}}</p>
+    </div>
+    <ng-template #body let-data="{ data: 'data' }"></ng-template>
+    <div class="card-footer text-muted">
+        {{footer.text}}
+    </div>
+</div>

@@ -1,32 +1,16 @@
 <div [@routerTransition]>
 
-    <h2 class="text-muted">Dashboard <small></small></h2>
-
-    <div>
-        <app-default-accordion [metadata]="accordianMetadata"></app-default-accordion>
-        
-    </div>
+    <h2 class="text-muted">Job Ads List <small></small></h2>
+        <div class="row">
+                <div class="col" *ngFor="let ad of (adsState$ | async)?.ads">
+                        <app-seek-container [data]="ad" [metadata]="containerMetadata"></app-seek-container>
+                </div>
+        </div>
+        <br />
+        <div class="row">
+                <div class="col">
+                        <button (click)="onCheckoutClick($event)" type="button" class="btn btn-danger">Checkout</button>
+                </div>        
+        </div>
     
 </div>
-
-<ng-template #ads let-metadata="value">
-        <div class="row">
-                <div class="col-sm-6" *ngFor="let card of cards">
-                        <app-default-card (buttonClicked)="onSavePackage($event)" [metadata]="card"></app-default-card>
-                  
-                </div>
-              </div>
-    
-</ng-template>
-
-<ng-template #package let-metadata="value">
-        
-   <h3>hahaha</h3>
-
-</ng-template>
-
-<ng-template #classicPackage let-metadata="value">
-        
-        <h3>hahaha</h3>
-        <a href="#" (click)="onSavePackage($event)" class="btn btn-primary">Testest</a> 
-     </ng-template>

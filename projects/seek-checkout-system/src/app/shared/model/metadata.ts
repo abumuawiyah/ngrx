@@ -1,15 +1,7 @@
 export interface Metadata {
-    label?: string;
-    data?: any;
-    items?: Array<any>;
-    content?: any;
+    texts?: object;
+    components?: object;
+    dataAccess?: object;
+    actionReference?: object;
     actions?: object;
-}
-
-export interface CardMetadata {
-    label?: string;
-    data?: any;
-    items?: Array<any>;
-    content?: any;
-    action?: object;
 }

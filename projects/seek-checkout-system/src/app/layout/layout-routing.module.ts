@@ -7,10 +7,14 @@ const routes: Routes = [
         path: "",
         component: LayoutComponent,
         children: [
-            { path: "", redirectTo: "dashboard" },
+            { path: "", redirectTo: "jobads" },
             {
-                path: "dashboard",
+                path: "jobads",
                 loadChildren: "./job-ads/job-ads.module#JobAdsModule"
+            },
+            {
+                path: "checkout",
+                loadChildren: "./checkout/checkout.module#CheckoutModule"
             }
         ]
     }
