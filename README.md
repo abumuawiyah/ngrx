@@ -2,6 +2,8 @@
 Angular 6, CLI 6 (also known as angular workspace), NgRX and BootStrap 4
 
 > I can't spend enough time for this scaffold as I have "hackhaton" session on saturday (scheduled before I have this assessment) and on sunday I need to taking care of my kid (get chicken pox). 
+> The assessment approach is pretty new to me as for UI developer, the process is we are having the wireframe first before code. I did spend hours to research how the Job ads checkout UX look like. 
+> In the end I just design the UI based on my understanding
 
 ## Requirement
 Please install NodeJS, Git and Yarn
@@ -29,7 +31,7 @@ Build the job-ads-api library
 ```bash
 ng build job-ads-api
 ```
-Start new checkout app
+Start the checkout app
 ```bash
 ng serve seek-checkout-system --aot
 ```
@@ -39,7 +41,7 @@ The job-ads-api is the library that can be used across projects.
 The job-ads-api contains methods integrated with dummy services that I wrote as a faaS in Webtask cloud.
 
 ## Component-based
-As Angular 6 is component-based framework, in this scaffold is demostrate several levels of component.
+As Angular 6 is component-based framework, in this scaffold I am demostrating several levels of components.
 
 ### Component as an Application
 This scaffold created as a Workspace. Workspace means it's act as a container for the applications and libraries. By providing the project as a Workspace, the applications and the libraries live in the Workspace as monorepo. The idea is pretty similar with LernaJS, nwrl.io and Yarn workspace but the different is this stuff is coming from Angular.
@@ -58,7 +60,7 @@ ng generate application seek-checkout-system
 Please read more details on this article [UI Microservice](https://micro-frontends.org/)
 
 ### Component as a Library
-Library is a component that can be reuse accross projects. To use library in other workspace, adding the library by configure the projects in angular.json
+Library is a component that can be reuse accross projects. To use library in other workspace, we need to add the library by configure the projects in angular.json
 
 We develop the job-ads-api as a library
 
