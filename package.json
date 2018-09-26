@@ -4,14 +4,13 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --aot",
-    "build": "ng build --prod",
-    "test": "ng test",
+    "start": "ng serve seek-checkout-system --aot",
+    "build": "ng build seek-checkout-system --prod",
+    "test": "ng test seek-checkout-system",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "e2elocal": "ng e2e --webdriver-update=false",
-    "testcoverage": "ng test rapi-wspace --watch=false --code-coverage",
-    "build-widgetbuilder": "ng build widget-builder"
+    "testcoverage": "ng test seek-checkout-system --watch=false --code-coverage"
   },
   "private": true,
   "dependencies": {

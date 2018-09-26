@@ -7,11 +7,7 @@ import { TranslateService } from "@ngx-translate/core";
     styleUrls: ["./header.component.scss"]
 })
 export class HeaderComponent implements OnInit {
-    constructor(private translate: TranslateService) {}
+    constructor() {}
 
     ngOnInit() {}
-
-    onLoggedout() {
-        localStorage.removeItem("isLoggedin");
-    }
 }

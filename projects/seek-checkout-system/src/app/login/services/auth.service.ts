@@ -8,7 +8,7 @@ export class AuthService {
     constructor() {}
 
     login({ username, password }: Authenticate) {
-        return of({ name: "User" });
+        return of({ name: "Pepsi" });
     }
 
     logout() {

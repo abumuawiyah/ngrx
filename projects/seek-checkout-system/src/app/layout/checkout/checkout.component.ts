@@ -23,6 +23,7 @@ import { JobAdsApiService } from "job-ads-api";
 export class CheckoutComponent implements OnInit {
     getJobAdsState$ = this.store.select(fromJobAds.getJobAdsState);
     selectedPackagesState$: Observable<any>;
+    jobAndPackages: Array<any> = [];
 
     constructor(
         private store: Store<fromJobAds.State>,
@@ -35,9 +36,11 @@ export class CheckoutComponent implements OnInit {
             select(fromJobAds.getSelectedPackages)
         );
 
-        this.selectedPackagesState$.subscribe(state =>
-            console.log(state.selections)
-        );
+        this.selectedPackagesState$.subscribe(state => {
+            this.jobAndPackages = state.selections.map(
+                selection => Object.values(selection)[0]
+            );
+        });
     }
 
     onPayClick(e) {}

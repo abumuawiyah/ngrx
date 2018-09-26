@@ -2,6 +2,9 @@ import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { HeaderComponent } from "./header.component";
 import { TranslateModule } from "@ngx-translate/core";
+import { CommonModule } from "@angular/common";
+import { LayoutRoutingModule } from "../../layout-routing.module";
+import { NgbDropdownModule } from "@ng-bootstrap/ng-bootstrap";
 
 describe("HeaderComponent", () => {
     let component: HeaderComponent;
@@ -10,7 +13,11 @@ describe("HeaderComponent", () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [HeaderComponent],
-            imports: [TranslateModule]
+            imports: [
+                CommonModule,
+                LayoutRoutingModule,
+                NgbDropdownModule.forRoot()
+            ]
         }).compileComponents();
     }));
 

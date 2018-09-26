@@ -5,6 +5,7 @@ import { Store } from "@ngrx/store";
 import { Authenticate } from "./models/user";
 import * as fromAuth from "./reducers";
 import * as Auth from "./actions/auth";
+import { FormControl, FormGroup } from "@angular/forms";
 
 @Component({
     selector: "app-login",
@@ -15,16 +16,19 @@ import * as Auth from "./actions/auth";
 export class LoginComponent implements OnInit, OnDestroy {
     getLoggedIn$ = this.store.select(fromAuth.getLoggedIn);
     user$ = this.store.select(fromAuth.getUser);
+    loginForm = new FormGroup({
+        username: new FormControl(""),
+        password: new FormControl("")
+    });
 
     constructor(private store: Store<fromAuth.State>, public router: Router) {}
 
     ngOnInit() {}
     ngOnDestroy() {}
 
-    onLoggedin($event: Authenticate) {
+    onLoggedin($event) {
+        const auth: Authenticate = this.loginForm.value;
         localStorage.setItem("isLoggedin", "true");
-        this.store.dispatch(
-            new Auth.Login({ username: "test", password: "test123" })
-        );
+        this.store.dispatch(new Auth.Login(auth));
     }
 }

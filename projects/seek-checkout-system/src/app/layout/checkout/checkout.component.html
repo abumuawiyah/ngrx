@@ -2,7 +2,7 @@
 
     <h2 class="text-muted">Checkout <small>please verify your items</small></h2>
     <div class="row">
-      <div class="col" *ngFor="let package of (selectedPackagesState$ | async)">
+      <div class="col" *ngFor="let package of jobAndPackages">
         {{package}}
       </div>
     </div>

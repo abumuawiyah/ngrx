@@ -3,6 +3,9 @@ import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 import { LayoutComponent } from "./layout.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { LayoutRoutingModule } from "./layout-routing.module";
+import { CommonModule } from "@angular/common";
+import { TranslateModule } from "@ngx-translate/core";
+import { NgbDropdownModule } from "@ng-bootstrap/ng-bootstrap";
 
 describe("LayoutComponent", () => {
     let component: LayoutComponent;
@@ -11,7 +14,12 @@ describe("LayoutComponent", () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [LayoutComponent, HeaderComponent],
-            imports: [LayoutRoutingModule]
+            imports: [
+                CommonModule,
+                LayoutRoutingModule,
+                TranslateModule,
+                NgbDropdownModule.forRoot()
+            ]
         }).compileComponents();
     }));
 

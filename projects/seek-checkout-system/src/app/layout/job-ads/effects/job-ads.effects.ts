@@ -39,22 +39,22 @@ export class JobAdsEffects {
         .ofType(JobAdsActionTypes.AdsLoaded)
         .exhaustMap((action: AdsLoaded) => action.payload.data);
 
-    @Effect({ dispatch: false })
+    @Effect({ dispatch: true })
     checkout$ = this.actions$
         .ofType(JobAdsActionTypes.Checkout)
         .map((action: Checkout) => action.payload)
         .do(selections => {
-            console.log("--->", selections);
-            this.jobAdsServ
-                .checkout(selections)
-                .subscribe(data => new CheckoutSuccess(data));
-            // this.router.navigate(["/checkout"]);
-        });
+            this.jobAdsServ.checkout(selections).subscribe();
+        })
+        .map(response => new CheckoutSuccess(response));
 
     @Effect({ dispatch: false })
     checkoutSuccess$ = this.actions$
         .ofType(JobAdsActionTypes.CheckoutSuccess)
-        .exhaustMap((action: CheckoutSuccess) => action.payload);
+        .map((action: CheckoutSuccess) => action.payload)
+        .do(() => {
+            this.router.navigate(["/checkout"]);
+        });
 
     constructor(
         private actions$: Actions,

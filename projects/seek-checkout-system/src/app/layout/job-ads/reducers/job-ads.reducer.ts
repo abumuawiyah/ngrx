@@ -51,8 +51,7 @@ export function reducer(state = adsState, action: JobAdsActions): State {
         case JobAdsActionTypes.Checkout: {
             return {
                 ...state,
-                checkoutComplete: false,
-                checkoutItems: [...action.payload]
+                checkoutComplete: false
             };
         }
 

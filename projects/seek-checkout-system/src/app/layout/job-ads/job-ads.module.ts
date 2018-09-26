@@ -7,7 +7,7 @@ import { EffectsModule } from "@ngrx/effects";
 import { JobAdsEffects } from "./effects/job-ads.effects";
 import { reducers } from "./reducers";
 
-import { DashboardRoutingModule } from "./job-ads-routing.module";
+import { JobAdsRoutingModule } from "./job-ads-routing.module";
 import { JobAdsComponent } from "./job-ads.component";
 
 import { RouterModule } from "@angular/router";
@@ -20,7 +20,7 @@ import { SeekUlComponent } from "../../shared/modules/seek-ul/seek-ul.component"
 @NgModule({
     imports: [
         CommonModule,
-        DashboardRoutingModule,
+        JobAdsRoutingModule,
         StoreModule.forFeature("jobAds", reducers),
         EffectsModule.forFeature([JobAdsEffects]),
         JobAdsApiModule,

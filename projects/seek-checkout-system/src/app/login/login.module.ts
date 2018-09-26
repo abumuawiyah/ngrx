@@ -34,7 +34,8 @@ export class LoginModule {
         LoginModule,
         RouterModule.forChild([{ path: "login", component: LoginComponent }]),
         StoreModule.forFeature("auth", reducers),
-        EffectsModule.forFeature([AuthEffects])
+        EffectsModule.forFeature([AuthEffects]),
+        ReactiveFormsModule
     ]
 })
 export class RootLoginModule {}

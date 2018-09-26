@@ -1,149 +1,112 @@
-# GS Angular Scaffold
-Angular 6, CLI 6, NgRX and BootStrap 4
+# NgRX Scaffold
+Angular 6, CLI 6 (also known as angular workspace), NgRX and BootStrap 4
+
+> I can't spend enough time for this scaffold as I have "hackhaton" session on saturday (scheduled before I have this assessment) and on sunday I need to taking care of my kid (get chicken pox). 
+
+## Requirement
+Please install NodeJS, Git and Yarn
 
 ## Project set-up
-### Cloning the repo with no ssh keys set
+### Cloning the repo
 ```bash
-git -c http.sslVerify=false https://gitlab.nat.bt.com/gs-scaffolds/gs-angular.git
+git -c https://github.com/abumuawiyah/ngrx.git
 ```
 ### Remote the repo 
-> Make sure you run "git init" first in empty folder
-
-configure info into git
-- git config http.sslVerify false
-- git config user.email user.email@bt.com
-- git config user.name "User Name"
+> If you like to contribute, feel free to remote this repo.
 
 Add remote origin
 ```bash
-git remote add origin https://gitlab.nat.bt.com/gs-scaffolds/gs-angular.git
-```
-
-Grab the code
-```bash
+git remote add origin https://github.com/abumuawiyah/ngrx.git
 git pull origin master
 ```
 
 ## Kick-start
-Install packages using NPM/Yarn
-NPM
-```bash
-npm install
-npm start
-```
-Yarn
+
 ```bash
 yarn
-yarn start
 ```
-Add remote origin
+Build the job-ads-api library
 ```bash
-git remote add origin https://gitlab.nat.bt.com/gs-scaffolds/gs-angular.git
+ng build job-ads-api
 ```
-## Branching model
-T.B.D - Trunk Based Development [Check it out!](https://trunkbaseddevelopment.com/)
-- Trunk
-- Feature branch
-- Release branch
-
-> Practice for new feature
-
+Start new checkout app
 ```bash
-# comment: create new branch for new feature
-git checkout -b <feature-name> 
-# comment: once you statified with the code add and commit it
-git add --all
-git commit -m "commit feature code into branch"
-git push origin <feature-name>
-# comment: merge your branch with trunk and make sure no conflicts
-git fetch
-git merge origin/master
-# comment: merge your branch into trunk
-git checkout master
-git push origin <feature-name>:master
-```
-> Practice for release branch
-To be update...
-
-## Development
-### Creating new page
-```bash
-cd src\app\layout
-ng g m <page-name> --routing
-ng g c <page-name> --flat
-# comment: folder for page components - shareable across page only
-mkdir components
-# comment: folder for smart-components
-mkdir containers
+ng serve seek-checkout-system --aot
 ```
 
-### Creating reusable component/widget/dumb component
-```bash
-cd src\app\shared
-ng g m <put specific name e.g. "table">
-cd table
-# comment: specific components
-mkdir components
-cd components
-ng g c <put specific name e.g. "advanced-table">
-```
+## job-ads-api
+The job-ads-api is the library that can be used across projects. 
+The job-ads-api contains methods integrated with dummy services that I wrote as a faaS in Webtask cloud.
 
-## Build
+## Component-based
+As Angular 6 is component-based framework, in this scaffold is demostrate several levels of component.
+
+### Component as an Application
+This scaffold created as a Workspace. Workspace means it's act as a container for the applications and libraries. By providing the project as a Workspace, the applications and the libraries live in the Workspace as monorepo. The idea is pretty similar with LernaJS, nwrl.io and Yarn workspace but the different is this stuff is coming from Angular.
+
+> component as an application is the approach for micro-frontends.
+> For example we can invoke the seek-checkout-system as a component
+> isolated in Web-component shadow-dom. Imagine that we have 2 teams 
+> works  on 2 different projects (checkout & pricing) and those
+> projects used in the same page e.g. checkout application pass
+> selected items to pricing application.
 
 ```bash
-yarn run build
+ng generate application seek-checkout-system
 ```
 
-## Test
+Please read more details on this article [UI Microservice](https://micro-frontends.org/)
+
+### Component as a Library
+Library is a component that can be reuse accross projects. To use library in other workspace, adding the library by configure the projects in angular.json
+
+We develop the job-ads-api as a library
+
+> An examples of third-party library is ngb-bootstrap, ngx-datatable and manymore
 
 ```bash
-yarn run test
+ng generate library job-ads-api
 ```
 
-### Generate code-coverage report
+### Component as a Widget
+Widget is a component that can be reuse across specific project. By referring to Principle of Least Power, we are not abstracting everything. 
+
+We develop SeekContainer and SeekUl as a widget
+
+Read more on here [Least Power rules](https://en.wikipedia.org/wiki/Rule_of_least_power)
+
+## Run the test
+seek-checkout-system
 
 ```bash
-yarn run testcoverage
+ng test seek-checkout-system
 ```
 
-## Automation test (e2e)
-
-> setting up webdriver-manager by run
+job-ads-api
 
 ```bash
-yarn add webdriver-manager
-
-yarn run e2e
-
-# global (recommended) - need to be run once
-webdriver-manager update --proxy <proxy-url>
+ng test job-ads-api
 ```
 
-## Serve prod version
+## Run the build for prod
+
+seek-checkout-system
 
 ```bash
-node node_modules\http-server\bin\http-server dist
+ng build seek-checkout-system --prod
 ```
-open the page in localhost:8080
 
-## NgRX helper using ngrx-schematic
-[Link](https://github.com/ngrx/platform/tree/master/docs/schematics)
-[NgRX documentation](/README.ngrx.md)
+job-ads-api
 
 ```bash
-yarn add @ngrx/schematics --dev
-ng config cli.defaultCollection @ngrx/schematics
+ng build job-ads-api
 ```
-open the page in localhost:8080
 
-## Publishing to Internal NPM
+## Project status
+- unit test - 60% done
+- integration test - 20% done
+- automation test - 20% done
 
-Publish the project using the following commands.
-
-    npm version patch
-	npm run build
-	npm publish
-
-Push the new version back up to the master.
-
-## Using the package
+## Plan for enhancement
+Adding the state management make the code clean & predictable but is make us spend more effort to code (reducer, effect and action codes). 
+I plan to use [NgRX schematics](https://github.com/ngrx/platform/tree/master/docs/schematics) to easily generate reducer, effect and actions thru CLI

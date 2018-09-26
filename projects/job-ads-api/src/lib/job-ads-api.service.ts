@@ -22,13 +22,13 @@ export class JobAdsApiService {
         return this.http.get<any>(url);
     }
 
-    getPackages(reqData: any): Observable<any> {
-        const url = `${this.apiRoot}/getPackages`;
-        return this.http.get<any>(url);
-    }
-
     checkout(reqData: any): Observable<any> {
         const url = `${this.apiRoot}/checkout`;
         return this.http.post<any>(url, reqData, httpOptions);
+    }
+
+    getTotalPrice(reqData: any): Observable<any> {
+        const url = `${this.apiRoot}/getTotal`;
+        return this.http.get<any>(url);
     }
 }
